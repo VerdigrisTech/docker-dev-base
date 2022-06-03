@@ -10,11 +10,6 @@ executors:
     working_directory: ~/docker-dev-base
 
 jobs:
-  lint:
-    executor: default
-    steps:
-      - checkout
-      - docker/hadolint
   build:
     executor: default
     steps:
@@ -30,7 +25,8 @@ workflows:
   version: 2
   lint:
     jobs:
-      - lint
+      - docker/hadolint:
+          executor-class: medium
   publish:
     jobs:
       - build:
