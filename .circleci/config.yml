@@ -3,11 +3,20 @@ version: 2.1
 orbs:
   docker: circleci/docker@2.1
 
-jobs:
-  build:
+executors:
+  default:
     docker:
       - image: cimg/base:stable-20.04
     working_directory: ~/docker-dev-base
+
+jobs:
+  lint:
+    executor: default
+    steps:
+      - checkout
+      - docker/hadolint
+  build:
+    executor: default
     steps:
       - checkout
       - setup_remote_docker:
@@ -19,6 +28,9 @@ jobs:
 
 workflows:
   version: 2
+  lint:
+    jobs:
+      - lint
   publish:
     jobs:
       - build:
