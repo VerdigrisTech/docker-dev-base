@@ -1,7 +1,10 @@
 FROM bitnami/minideb:bullseye AS builder
 ARG ref=master
 WORKDIR /tmp/zsh-build
+
+# # Set pipefail so the entire piped commands fail
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN install_packages curl \
                      ca-certificates \
                      autoconf \
@@ -65,8 +68,8 @@ RUN install_packages libcap2 \
                      git \
                      sudo
 
-# Use zsh from this point on
-SHELL ["/usr/bin/zsh", "-o", "pipefail", "-c"]
+# Set pipefail so the entire piped commands fail
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Use UTF-8 locale as default
 ENV LANG=C.UTF-8
