@@ -23,7 +23,7 @@ RUN install_packages curl \
 RUN curl -L https://api.github.com/repos/zsh-users/zsh/tarball/$ref | tar xz --strip=1
 
 COPY *.patch ./
-RUN for p in *.patch; do patch -s -p1 -r /dev/null -i $p || true; done
+RUN for p in *.patch; do patch -s -p1 -r /dev/null -i "$p" || true; done
 
 RUN ./Util/preconfig
 RUN build_platform=x86_64; \
@@ -86,7 +86,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 RUN NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Configure shell
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 COPY dotfiles/* /home/${USERNAME}
 
 WORKDIR /home/${USERNAME}
