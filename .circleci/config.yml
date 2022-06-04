@@ -27,6 +27,7 @@ workflows:
     jobs:
       - docker/hadolint:
           executor-class: medium
+          ignore-rules: DL3059
   publish:
     jobs:
       - build:
