@@ -69,7 +69,7 @@ ENV LANG=C.UTF-8
 
 # Create a non-root user
 ARG USERNAME=verdigrisian
-RUN adduser ${USERNAME} && echo "${USERNAME}  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/${USERNAME}
+RUN adduser ${USERNAME} && echo "${USERNAME}  ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/${USERNAME}
 USER ${USERNAME}
 
 # Install oh-my-zsh for the default user
@@ -84,4 +84,4 @@ COPY dotfiles/* /home/${USERNAME}
 
 WORKDIR /home/${USERNAME}
 
-CMD ["/usr/bin/zsh","-l"]
+CMD ["/usr/bin/zsh", "-l"]
