@@ -20,6 +20,9 @@ jobs:
       - docker/check:
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
+      - docker/publish:
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
 
 workflows:
   version: 2
@@ -30,5 +33,10 @@ workflows:
           ignore-rules: DL3059
   publish:
     jobs:
-      - build:
+      - docker/publish:
           context: dockerhub
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
+          image: verdigristech/dev-base
+          remote-docker-version: 20.10.14
+          use-remote-docker: true
