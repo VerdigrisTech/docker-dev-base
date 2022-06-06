@@ -2,6 +2,8 @@
 
 Base image for setting up VS Code development environments.
 
+![shell](./docs/shell.png)
+
 ## Overview
 
 This image is based on [bitnami/minideb][minideb] image with [Zsh][zsh] as the
@@ -20,6 +22,10 @@ plugins pre-installed.
 - [F-Sy-H][f-sy-h] (syntax highlighting)
 - [zsh-autocomplete][zsh-autocomplete] (auto completion)
 - [zsh-autosuggestions][zsh-autosuggestions] (auto suggestions)
+
+## Supported tags
+
+- bulleseye, 11
 
 ---
 
