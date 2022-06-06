@@ -48,6 +48,9 @@ RUN su - zshtest -c 'timeout 120 make test' || true
 
 FROM bitnami/minideb:bullseye
 
+# Build arguments
+ARG LSD_VERSION=0.21.0
+
 # Image metadata
 LABEL maintainer="Andrew Jo <andrew@verdigris.co>"
 
@@ -70,6 +73,13 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Use UTF-8 locale as default
 ENV LANG=C.UTF-8
+
+# Install enhanced toolset
+RUN cd /tmp \
+  && LSD_PACKAGE_NAME="lsd_${LSD_VERSION}_$(dpkg --print-architecture).deb" \
+  && curl -sSLO "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/${LSD_PACKAGE_NAME}" \
+  && dpkg -i "${LSD_PACKAGE_NAME}" \
+  && rm "/tmp/${LSD_PACKAGE_NAME}"
 
 # Create a non-root user
 ARG USERNAME=verdigrisian
