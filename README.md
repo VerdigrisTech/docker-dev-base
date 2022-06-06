@@ -12,9 +12,10 @@ plugins pre-installed.
 
 ### Pre-installed userland tools
 
+- `bat` (enhanced `cat`)
 - `curl`
 - `git`
-- `lsd`
+- `lsd` (enhanced `ls`)
 - `sudo`
 
 ### Pre-installed Zsh plugins

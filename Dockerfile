@@ -66,7 +66,8 @@ RUN install_packages libcap2 \
                      ca-certificates \
                      curl \
                      git \
-                     sudo
+                     sudo \
+                     bat
 
 # Set pipefail so the entire piped commands fail
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
