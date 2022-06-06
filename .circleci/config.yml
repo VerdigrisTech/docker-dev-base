@@ -41,3 +41,4 @@ workflows:
           docker-password: DOCKER_PASSWORD
           remote-docker-version: 20.10.14
           use-remote-docker: true
+          tag: 11,bullseye
