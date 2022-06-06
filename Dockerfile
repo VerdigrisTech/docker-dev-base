@@ -50,6 +50,7 @@ FROM bitnami/minideb:bullseye
 
 # Build arguments
 ARG LSD_VERSION=0.21.0
+ARG GLOW_VERSION=1.4.1
 
 # Image metadata
 LABEL maintainer="Andrew Jo <andrew@verdigris.co>"
@@ -81,6 +82,10 @@ RUN LSD_PACKAGE_NAME="lsd_${LSD_VERSION}_$(dpkg --print-architecture).deb" \
   && curl -sSLO "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/${LSD_PACKAGE_NAME}" \
   && dpkg -i "${LSD_PACKAGE_NAME}" \
   && rm "${LSD_PACKAGE_NAME}"
+RUN GLOW_PACKAGE_NAME="glow_${GLOW_VERSION}_linux_$(dpkg --print-architecture).deb" \
+  && curl -sSLO "https://github.com/charmbracelet/glow/releases/download/v${GLOW_VERSION}/${GLOW_PACKAGE_NAME}" \
+  && dpkg -i "${GLOW_PACKAGE_NAME}" \
+  && rm "${GLOW_PACKAGE_NAME}"
 
 # Create a non-root user
 ARG USERNAME=verdigrisian

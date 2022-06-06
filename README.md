@@ -15,6 +15,7 @@ plugins pre-installed.
 - `bat` (enhanced `cat`)
 - `curl`
 - `git`
+- `glow`
 - `lsd` (enhanced `ls`)
 - `sudo`
 
