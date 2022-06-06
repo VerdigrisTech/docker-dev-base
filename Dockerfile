@@ -85,7 +85,7 @@ RUN cd /tmp \
 ARG USERNAME=verdigrisian
 RUN adduser ${USERNAME} && echo "${USERNAME}  ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/${USERNAME}
 COPY dotfiles/* /home/${USERNAME}/
-RUN chown -R ${USERNAME}:${USERNAME} .
+RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 USER ${USERNAME}
 
 # Install oh-my-zsh for the default user
