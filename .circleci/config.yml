@@ -35,6 +35,9 @@ workflows:
     jobs:
       - docker/publish:
           context: dockerhub
+          executor: default
           image: verdigristech/dev-base
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
+          remote-docker-version: 20.10.14
+          use-remote-docker: true
