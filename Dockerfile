@@ -75,11 +75,11 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV LANG=C.UTF-8
 
 # Install enhanced toolset
-RUN cd /tmp \
-  && LSD_PACKAGE_NAME="lsd_${LSD_VERSION}_$(dpkg --print-architecture).deb" \
+WORKDIR /tmp
+RUN LSD_PACKAGE_NAME="lsd_${LSD_VERSION}_$(dpkg --print-architecture).deb" \
   && curl -sSLO "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/${LSD_PACKAGE_NAME}" \
   && dpkg -i "${LSD_PACKAGE_NAME}" \
-  && rm "/tmp/${LSD_PACKAGE_NAME}"
+  && rm "${LSD_PACKAGE_NAME}"
 
 # Create a non-root user
 ARG USERNAME=verdigrisian
@@ -90,10 +90,10 @@ USER ${USERNAME}
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Add ZSH enhancements
-RUN git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autocomplete \
-  && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
-  && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
-  && git clone https://github.com/z-shell/F-Sy-H.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/F-Sy-H
+RUN git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autocomplete" \
+  && git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" \
+  && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" \
+  && git clone https://github.com/z-shell/F-Sy-H.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/F-Sy-H"
 
 # Install Homebrew to keep the container environment similar to macOS local dev environment
 # RUN NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -103,8 +103,9 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUST
 
 # Copy over dotfiles
 COPY dotfiles/* /home/${USERNAME}/
-RUN sudo chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
+USER root
+RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
+USER ${USERNAME}
 WORKDIR /home/${USERNAME}
-
 CMD ["/usr/bin/zsh", "-l"]
