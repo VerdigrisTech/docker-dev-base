@@ -2,9 +2,6 @@ FROM bitnami/minideb:bullseye AS builder
 ARG ZSH_VERSION=5.9
 WORKDIR /tmp/zsh-build
 
-# # Set pipefail so the entire piped commands fail
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 RUN install_packages curl \
                      ca-certificates \
                      autoconf \
