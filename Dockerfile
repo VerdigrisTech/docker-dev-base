@@ -20,7 +20,7 @@ RUN install_packages curl \
                      man-db \
                      texinfo \
                      patch
-RUN curl -L https://api.github.com/repos/zsh-users/zsh/tarball/$ref | tar xz --strip=1
+RUN curl -sSL https://api.github.com/repos/zsh-users/zsh/tarball/$ref | tar xz --strip=1
 
 COPY *.patch ./
 RUN for p in *.patch; do patch -s -p1 -r /dev/null -i "$p" || true; done
