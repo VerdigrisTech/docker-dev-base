@@ -41,3 +41,4 @@ workflows:
           docker-password: DOCKER_PASSWORD
           remote-docker-version: 20.10.14
           use-remote-docker: true
+          extra_build_args: '--build-arg ref=5.9'
