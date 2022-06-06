@@ -84,8 +84,6 @@ RUN cd /tmp \
 # Create a non-root user
 ARG USERNAME=verdigrisian
 RUN adduser ${USERNAME} && echo "${USERNAME}  ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/${USERNAME}
-COPY dotfiles/* /home/${USERNAME}/
-RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 USER ${USERNAME}
 
 # Install oh-my-zsh for the default user
@@ -102,6 +100,10 @@ RUN git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git
 
 # Configure shell
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+
+# Copy over dotfiles
+COPY dotfiles/* /home/${USERNAME}/
+RUN sudo chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
 WORKDIR /home/${USERNAME}
 
