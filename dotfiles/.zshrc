@@ -111,6 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cat=bat
 alias ls=lsd
 
 # To customize prompt, run  or edit ~/.p10k.zsh.
