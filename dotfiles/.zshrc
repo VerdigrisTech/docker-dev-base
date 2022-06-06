@@ -80,6 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   F-Sy-H
   git
+  zsh-autocomplete
   zsh-autosuggestions
 )
 
