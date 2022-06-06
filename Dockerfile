@@ -1,5 +1,5 @@
 FROM bitnami/minideb:bullseye AS builder
-ARG ref=master
+ARG ZSH_VERSION=master
 WORKDIR /tmp/zsh-build
 
 # # Set pipefail so the entire piped commands fail
@@ -20,7 +20,7 @@ RUN install_packages curl \
                      man-db \
                      texinfo \
                      patch
-RUN curl -sSL https://api.github.com/repos/zsh-users/zsh/tarball/$ref | tar xz --strip=1
+RUN curl -sSL https://api.github.com/repos/zsh-users/zsh/tarball/$ZSH_VERSION | tar xz --strip=1
 
 COPY *.patch ./
 RUN for p in *.patch; do patch -s -p1 -r /dev/null -i "$p" || true; done
@@ -41,8 +41,8 @@ RUN build_platform=x86_64; \
                 --with-tcsetpgrp
 RUN make
 RUN make -C Etc all FAQ FAQ.html
-RUN if test $ref = "master" ; then install_packages cm-super-minimal texlive-fonts-recommended texlive-latex-base texlive-latex-recommended ghostscript bsdmainutils ; fi
-RUN if test $ref = "master" ; then make -C Doc everything ; fi
+RUN if test $ZSH_VERSION = "master" ; then install_packages cm-super-minimal texlive-fonts-recommended texlive-latex-base texlive-latex-recommended ghostscript bsdmainutils ; fi
+RUN if test $ZSH_VERSION = "master" ; then make -C Doc everything ; fi
 RUN make install DESTDIR=/tmp/zsh-install
 RUN make install.info DESTDIR=/tmp/zsh-install || true
 RUN yes '' | adduser --shell /bin/sh --home /tmp/zsh-build --disabled-login --disabled-password zshtest
