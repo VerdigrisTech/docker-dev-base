@@ -58,12 +58,16 @@ LABEL maintainer="Andrew Jo <andrew@verdigris.co>"
 # Copy the compiled zsh binaries
 COPY --from=builder /tmp/zsh-install /
 
+# Add zsh as one of the shells
+RUN echo "/usr/bin/zsh" >> /etc/shells
+
 # Install packages required to run zsh and dev tools.
 RUN install_packages libcap2 \
                      libtinfo5 \
                      libncursesw5 \
                      libpcre3 \
                      libgdbm6 \
+                     build-essential \
                      ca-certificates \
                      curl \
                      git \
@@ -113,4 +117,4 @@ RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
-CMD ["/usr/bin/zsh", "-l"]
+ENTRYPOINT ["/usr/bin/zsh", "-l"]
