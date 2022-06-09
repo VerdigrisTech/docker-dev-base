@@ -89,7 +89,7 @@ RUN GLOW_PACKAGE_NAME="glow_${GLOW_VERSION}_linux_$(dpkg --print-architecture).d
 
 # Create a non-root user
 ARG USERNAME=verdigrisian
-RUN adduser ${USERNAME} && echo "${USERNAME}  ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/${USERNAME}
+RUN adduser ${USERNAME} --shell /usr/bin/zsh && echo "${USERNAME}  ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/${USERNAME}
 USER ${USERNAME}
 
 # Install oh-my-zsh for the default user
