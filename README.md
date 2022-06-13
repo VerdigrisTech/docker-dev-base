@@ -17,6 +17,7 @@ plugins pre-installed.
 - `git`
 - `glow`
 - `lsd` (enhanced `ls`)
+- `ssh` (client toolchain only)
 - `sudo`
 
 ### Pre-installed Zsh plugins
