@@ -72,7 +72,8 @@ RUN install_packages libcap2 \
                      curl \
                      git \
                      sudo \
-                     bat
+                     bat \
+                     openssh-client
 
 # Set pipefail so the entire piped commands fail
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
