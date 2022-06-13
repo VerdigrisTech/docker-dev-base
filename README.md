@@ -28,7 +28,7 @@ plugins pre-installed.
 
 ## Supported tags
 
-- bulleseye, 11
+- bullseye, 11
 
 ---
 
