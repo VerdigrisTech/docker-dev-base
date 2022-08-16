@@ -6,6 +6,7 @@ RUN install_packages curl \
                      ca-certificates \
                      autoconf \
                      make \
+                     icu-devtools \
                      libtool \
                      libcap-dev \
                      libtinfo5 \
