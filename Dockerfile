@@ -72,6 +72,7 @@ RUN install_packages libcap2 \
                      ca-certificates \
                      curl \
                      git \
+                     less \
                      sudo \
                      bat \
                      openssh-client
