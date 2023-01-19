@@ -72,6 +72,7 @@ RUN install_packages libcap2 \
                      ca-certificates \
                      curl \
                      git \
+                     gnupg \
                      less \
                      sudo \
                      bat \

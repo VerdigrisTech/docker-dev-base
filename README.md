@@ -16,6 +16,7 @@ plugins pre-installed.
 - `curl`
 - `git`
 - `glow`
+- `gpg`
 - `less`
 - `lsd` (enhanced `ls`)
 - `ssh` (client toolchain only)
