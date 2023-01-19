@@ -34,7 +34,7 @@ plugins pre-installed.
 
 ---
 
-Copyright © 2022 Verdigris Technologies, Inc. All rights reserved.
+Copyright © 2022-2023 Verdigris Technologies, Inc. All rights reserved.
 
 [minideb]: https://github.com/bitnami/minideb
 [zsh]: https://www.zsh.org/
