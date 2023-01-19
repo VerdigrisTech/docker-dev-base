@@ -1,5 +1,8 @@
 # docker-dev-base
 
+![Downloads][shield-docker-downloads]
+![Image Size][shield-docker-size]
+
 Base image for setting up VS Code development environments.
 
 ![shell](./docs/shell.png)
@@ -36,6 +39,8 @@ plugins pre-installed.
 
 Copyright © 2022-2023 Verdigris Technologies, Inc. All rights reserved.
 
+[shield-docker-downloads]: https://img.shields.io/docker/pulls/verdigristech/dev-base?style=flat-square
+[shield-docker-size]: https://img.shields.io/docker/image-size/verdigristech/dev-base/11?style=flat-square
 [minideb]: https://github.com/bitnami/minideb
 [zsh]: https://www.zsh.org/
 [oh-my-zsh]: https://ohmyz.sh/
