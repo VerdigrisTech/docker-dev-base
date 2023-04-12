@@ -1,3 +1,18 @@
+ lines (43 sloc) 1.47 KB
+# ------------------------------------------------------------------- #
+# Optional dev overwrite
+# ------------------------------------------------------------------- #
+
+if ! [[ -z $ZSHRC_OVERWRITE ]] && [[ -f $ZSHRC_OVERWRITE ]]
+then
+    source $ZSHRC_OVERWRITE
+    exit 0
+fi
+
+# ------------------------------------------------------------------- #
+# oh-my-zsh config
+# ------------------------------------------------------------------- #
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -77,42 +92,42 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  F-Sy-H
-  git
-  zsh-autocomplete
-  zsh-autosuggestions
-)
 
-source $ZSH/oh-my-zsh.sh
+# ZSH_PLUGINS=git,git-flow,... can be set if you want plugins
+plugins_env_str="${ZSH_PLUGINS:-F-Sy-H,git,zsh-autocomplete, zsh-autosuggestions}"
+plugins=(${(@s:,:)plugins_env_str})
 
-# User configuration
+# ------------------------------------------------------------------- #
+# aliases
+# ------------------------------------------------------------------- #
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# system
 alias cat=batcat
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='/bin/rm -i'
+alias lsl='ls -haltr'  # -halter  the `-e` is part of the `-l`
 alias ls=lsd
+alias sl="ls | rev"
+
+# git
+alias grr='git reset HEAD~1'
+alias gus='git reset HEAD'
 
 # To customize prompt, run  or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ------------------------------------------------------------------- #
+# Optional dev additions
+# ------------------------------------------------------------------- #
+
+if ! [[ -z $ZSHRC_EXTRA ]] && [[ -f $ZSHRC_EXTRA ]]
+then
+    source $ZSHRC_EXTRA
+fi
+
+# ------------------------------------------------------------------- #
+# Oh-my-zsh
+# ------------------------------------------------------------------- #
+
+source ${ZSH}/oh-my-zsh.sh
