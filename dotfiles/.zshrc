@@ -106,8 +106,8 @@ alias cat=batcat
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='/bin/rm -i'
-alias lsl='ls -haltr'  # -halter  the `-e` is part of the `-l`
 alias ls=lsd
+alias lsl='ls -haltr'  # -halter  the `-e` is part of the `-l`
 alias sl="ls | rev"
 
 # git
