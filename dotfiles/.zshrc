@@ -94,7 +94,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 
 # ZSH_PLUGINS=git,git-flow,... can be set if you want plugins
-plugins_env_str="${ZSH_PLUGINS:-F-Sy-H,git,zsh-autocomplete, zsh-autosuggestions}"
+plugins_env_str="${ZSH_PLUGINS:-F-Sy-H,git,zsh-autocomplete,zsh-autosuggestions}"
 plugins=(${(@s:,:)plugins_env_str})
 
 # ------------------------------------------------------------------- #
