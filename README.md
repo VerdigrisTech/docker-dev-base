@@ -28,8 +28,17 @@ plugins pre-installed.
 ### Pre-installed Zsh plugins
 
 - [F-Sy-H][f-sy-h] (syntax highlighting)
+- [git][git] (git branch annotations)
 - [zsh-autocomplete][zsh-autocomplete] (auto completion)
 - [zsh-autosuggestions][zsh-autosuggestions] (auto suggestions)
+
+Can overwrite these using `ZSH_PLUGINS` environment variable with a comma delimited list.
+
+### Zsh Customization
+
+You can provide a path to your own zshrc file using `ZSHRC_OVERWRITE`. Example to add an untracked `local` folder with a zshrc and mount the folder. Then provide this env variable to overwrite.
+
+To just extend functionality you can use `ZSHRC_EXTRA` which will source extra zshrc startup content including PATH overwrites if desired.
 
 ## Supported tags
 
