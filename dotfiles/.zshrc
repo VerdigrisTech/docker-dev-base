@@ -96,6 +96,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins_env_str="${ZSH_PLUGINS:-F-Sy-H,git,zsh-autocomplete,zsh-autosuggestions}"
 plugins=(${(@s:,:)plugins_env_str})
 
+source ${ZSH}/oh-my-zsh.sh
+
 # ------------------------------------------------------------------- #
 # aliases
 # ------------------------------------------------------------------- #
@@ -124,9 +126,3 @@ if ! [[ -z $ZSHRC_EXTRA ]] && [[ -f $ZSHRC_EXTRA ]]
 then
     source $ZSHRC_EXTRA
 fi
-
-# ------------------------------------------------------------------- #
-# Oh-my-zsh
-# ------------------------------------------------------------------- #
-
-source ${ZSH}/oh-my-zsh.sh
