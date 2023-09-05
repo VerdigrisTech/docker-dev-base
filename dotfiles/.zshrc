@@ -102,14 +102,26 @@ source ${ZSH}/oh-my-zsh.sh
 # aliases
 # ------------------------------------------------------------------- #
 
-# system
-alias cat=batcat
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='/bin/rm -i'
 alias ls=lsd
-alias lsl='ls -haltr'  # -halter  the `-e` is part of the `-l`
 alias sl="ls | rev"
+alias lsl='ls -haltr'  # -halter  the `-e` is part of the `-l`
+
+# Selectively enable features for non-Warp terminals.
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  # Aliasing batcat to cat will cause the autocomplete to slow down randomly.
+  alias cat=batcat
+
+  # Forcing interactive mode with system commands like cp, mv, rm will cause the
+  # shell prompt to hang randomly. Even in non-Warp terminals forcing this
+  # option causes hard to debug issues with shell scripts running under this zsh
+  # session. Only uncomment this if you are absolutely sure this won't cause
+  # issues.
+  #if [[ -o interactive ]]; then
+  #  alias cp='cp -i'
+  #  alias mv='mv -i'
+  #  alias rm='rm -i'
+  #fi
+fi
 
 # git
 alias grr='git reset HEAD~1'
