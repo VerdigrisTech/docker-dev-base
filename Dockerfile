@@ -1,4 +1,4 @@
-FROM bitnami/minideb:bullseye AS builder
+FROM bitnami/minideb:bookworm AS builder
 ARG ZSH_VERSION=5.9
 WORKDIR /tmp/zsh-build
 
@@ -47,7 +47,7 @@ RUN yes '' | adduser --shell /bin/sh --home /tmp/zsh-build --disabled-login --di
 RUN chown -R zshtest /tmp/zsh-build
 RUN su - zshtest -c 'timeout 120 make test' || true
 
-FROM bitnami/minideb:bullseye
+FROM bitnami/minideb:bookworm
 
 # Build arguments
 ARG LSD_VERSION=0.21.0
