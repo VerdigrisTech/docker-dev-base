@@ -32,10 +32,7 @@ jobs:
           image: << parameters.image >>
           tag: << parameters.tag >>
           use-buildkit: true
-          extra_build_args: --platform=linux/amd64,linux/arm64
-      - docker/push:
-          image: << parameters.image >>
-          tag: << parameters.tag >>
+          extra_build_args: --platform=linux/amd64,linux/arm64 --push
 
 workflows:
   lint:
