@@ -1,31 +1,15 @@
 version: 2.1
 
 orbs:
-  docker: circleci/docker@2.1
+  docker: circleci/docker@2.8
 
 executors:
   default:
     docker:
-      - image: cimg/base:stable-20.04
+      - image: cimg/base:current-22.04
     working_directory: ~/docker-dev-base
 
-jobs:
-  build:
-    executor: default
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 20.10.14
-          docker_layer_caching: false
-      - docker/check:
-          docker-username: DOCKER_USERNAME
-          docker-password: DOCKER_PASSWORD
-      - docker/publish:
-          docker-username: DOCKER_USERNAME
-          docker-password: DOCKER_PASSWORD
-
 workflows:
-  version: 2
   lint:
     jobs:
       - docker/hadolint:
@@ -39,7 +23,7 @@ workflows:
           image: verdigristech/dev-base
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
-          remote-docker-version: 20.10.14
+          remote-docker-version: default
           remote-docker-dlc: false
           use-remote-docker: true
           tag: 11,bullseye
