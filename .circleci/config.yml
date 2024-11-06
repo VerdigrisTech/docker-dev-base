@@ -19,7 +19,6 @@ workflows:
     jobs:
       - docker/publish:
           context: dockerhub
-          executor: default
           image: verdigristech/dev-base
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
