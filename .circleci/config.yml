@@ -25,5 +25,6 @@ workflows:
           docker-password: DOCKER_PASSWORD
           remote-docker-version: default
           remote-docker-dlc: false
+          use-buildkit: true
           use-remote-docker: true
           tag: 11,bullseye
