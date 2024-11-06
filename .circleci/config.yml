@@ -27,4 +27,4 @@ workflows:
           remote-docker-dlc: false
           use-buildkit: true
           use-remote-docker: true
-          tag: 11,bullseye
+          tag: 12,bookworm
