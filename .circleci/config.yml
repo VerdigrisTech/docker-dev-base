@@ -23,7 +23,7 @@ workflows:
           image: verdigristech/dev-base
           docker-username: DOCKER_USERNAME
           docker-password: DOCKER_PASSWORD
-          extra-build-args: --platform=linux/amd64,linux/arm64
+          extra_build_args: --platform=linux/amd64,linux/arm64
           remote-docker-version: default
           remote-docker-dlc: false
           use-buildkit: true
