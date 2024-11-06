@@ -9,6 +9,24 @@ executors:
       - image: cimg/base:current-22.04
     working_directory: ~/docker-dev-base
 
+jobs:
+  publish-image:
+    executor: docker/machine
+    steps:
+      - checkout
+      - docker/check:
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
+      - run:
+          name: Create custom builder
+          command: |
+            docker buildx create --name container-builder --driver docker-container --bootstrap --use
+      - docker/build:
+          image: verdigristech/dev-base
+          tag: 12,bookworm
+          use-buildkit: true
+          extra_build_args: --platform=linux/amd64,linux/arm64
+
 workflows:
   lint:
     jobs:
@@ -17,11 +35,5 @@ workflows:
           ignore-rules: DL3059,DL4006
   publish:
     jobs:
-      - docker/publish:
+      - publish-image:
           context: dockerhub
-          image: verdigristech/dev-base
-          docker-username: DOCKER_USERNAME
-          docker-password: DOCKER_PASSWORD
-          extra_build_args: --platform=linux/amd64,linux/arm64
-          use-buildkit: true
-          tag: 12,bookworm
