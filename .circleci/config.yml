@@ -11,6 +11,13 @@ executors:
 
 jobs:
   publish-image:
+    parameters:
+      image:
+        type: string
+        default: verdigristech/dev-base
+      tag:
+        type: string
+        default: latest
     executor: docker/machine
     steps:
       - checkout
@@ -22,10 +29,13 @@ jobs:
           command: |
             docker buildx create --name container-builder --driver docker-container --bootstrap --use
       - docker/build:
-          image: verdigristech/dev-base
-          tag: 12,bookworm
+          image: << parameters.image >>
+          tag: << parameters.tag >>
           use-buildkit: true
           extra_build_args: --platform=linux/amd64,linux/arm64
+      - docker/push:
+          image: << parameters.image >>
+          tag: << parameters.tag >>
 
 workflows:
   lint:
@@ -36,4 +46,6 @@ workflows:
   publish:
     jobs:
       - publish-image:
+          image: verdigristech/dev-base
+          tag: 12,bookworm
           context: dockerhub
